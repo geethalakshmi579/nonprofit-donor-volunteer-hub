@@ -2,7 +2,7 @@
 
 **AI-Powered Web App for Small Nonprofits**
 
-![Dashboard](https://via.placeholder.com/800x450?text=Dashboard+Preview)  
+![Dashboard]
 <img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/455a7072-ff7f-43ba-9a5a-8b1afa26f336" />
 <img width="1917" height="911" alt="image" src="https://github.com/user-attachments/assets/2f677bc0-911d-4ba1-89f7-cbcf8efe3bc1" />
 
