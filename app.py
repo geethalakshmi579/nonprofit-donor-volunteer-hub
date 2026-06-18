@@ -279,10 +279,10 @@ def claude(system: str, user: str, max_tokens: int = 900) -> str:
 
 
 # ──────────────────────────────────────────────────────────────────────────────
-# 7.  PDF EXPORT — Fixed Version (No Special Characters)
+# 7.  PDF EXPORT — Final Stable Version for Streamlit Cloud
 # ──────────────────────────────────────────────────────────────────────────────
 def build_pdf(df: pd.DataFrame, title: str = "Donor Report") -> bytes:
-    """Safe PDF generator without special characters"""
+    """Stable PDF generator for Streamlit Cloud"""
     pdf = FPDF(orientation="L", unit="mm", format="A4")
     pdf.add_page()
 
@@ -294,7 +294,6 @@ def build_pdf(df: pd.DataFrame, title: str = "Donor Report") -> bytes:
     pdf.set_text_color(6, 78, 59)
     pdf.cell(0, 12, clean_title[:90], ln=True, align="C")
     
-    # Subtitle - NO bullet character
     pdf.set_font("Helvetica", "", 9)
     pdf.set_text_color(100, 100, 100)
     pdf.cell(0, 8, f"Generated on {datetime.today().strftime('%B %d, %Y')} - {len(df):,} records", 
@@ -304,7 +303,6 @@ def build_pdf(df: pd.DataFrame, title: str = "Donor Report") -> bytes:
     # Columns
     cols = [c for c in ["name","email","type","campaign","donation_amount",
                        "donation_date","country"] if c in df.columns]
-    
     if not cols:
         cols = list(df.columns[:7])
 
@@ -338,8 +336,9 @@ def build_pdf(df: pd.DataFrame, title: str = "Donor Report") -> bytes:
     pdf.set_text_color(100, 100, 100)
     pdf.cell(0, 10, "Built with Claude for Claude Corps Fellowship", align="C")
 
-    return bytes(pdf.output())
-
+    # Fixed return - most reliable way
+    pdf_output = pdf.output(dest='S').encode('latin-1', errors='replace')
+    return pdf_output
 
 # ──────────────────────────────────────────────────────────────────────────────
 # 8.  CHART THEME
